@@ -1,4 +1,4 @@
-package base
+package palindrome_number
 
 import (
 	"github.com/stretchr/testify/suite"
