@@ -1,0 +1,11 @@
+package {{.PackageName}}
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/suite"
+)
+
+func Test{{.TestFunctionName}}(t *testing.T) {
+	suite.Run(t, new({{.SuiteStructName}}))
+}

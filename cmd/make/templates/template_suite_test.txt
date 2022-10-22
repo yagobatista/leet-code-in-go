@@ -1,0 +1,13 @@
+package {{.PackageName}}
+
+import (
+	"github.com/stretchr/testify/suite"
+)
+
+type {{.SuiteStructName}} struct {
+	suite.Suite
+}
+
+func (this *{{.SuiteStructName}}) Test() {
+	{{.FunctionName}}()
+}
