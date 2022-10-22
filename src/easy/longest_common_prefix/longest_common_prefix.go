@@ -2,8 +2,9 @@ package longest_common_prefix
 
 import "fmt"
 
-func LongestCommonPrefix(inputs []string) (prefix string) {
+func longestCommonPrefix(inputs []string) (prefix string) {
 	prefixCountsMap := make(map[string]int)
+	commonPrefixMap := make(map[string]int)
 
 	for i := 0; i < len(inputs); i++ {
 		input := inputs[i]
@@ -13,21 +14,22 @@ func LongestCommonPrefix(inputs []string) (prefix string) {
 			prefix = fmt.Sprintf("%s%s", prefix, string(input[j]))
 
 			count := prefixCountsMap[prefix]
-			prefixCountsMap[prefix] = count + 1
+			count++
+
+			prefixCountsMap[prefix] = count
+
+			isCommonBetweenAllInputs := count == len(inputs)
+			if isCommonBetweenAllInputs {
+				commonPrefixMap[prefix] = len(prefix)
+			}
 		}
 
 	}
 
-	commonPrefixMap := make(map[string]int)
+	return findLongest(commonPrefixMap)
+}
 
-	for prefix, count := range prefixCountsMap {
-		if count != len(inputs) {
-			continue
-		}
-
-		commonPrefixMap[prefix] = len(prefix)
-	}
-
+func findLongest(commonPrefixMap map[string]int) string {
 	var maxCount int
 	var longestPrefix string
 
