@@ -21,6 +21,10 @@ func (this *Stack[T]) Get() T {
 	return this.data[len(this.data)-1]
 }
 
+func (this *Stack[T]) IsEmpty() bool {
+	return len(this.data) == 0
+}
+
 func (this *Stack[T]) Len() int {
 	return len(this.data)
 }

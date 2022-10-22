@@ -18,10 +18,14 @@ func (this *ValidParenthesesSuite) TestMultipleType() {
 
 func (this *ValidParenthesesSuite) TestComplex() {
 	this.True(isValid("{{}}()[()]"))
+	this.True(isValid("{{{}}()[{()}]}"))
 }
 
 func (this *ValidParenthesesSuite) TestInvalidCases() {
 	this.False(isValid("(]"))
 	this.False(isValid("{][}"))
 	this.False(isValid("()("))
+	this.False(isValid("]"))
+	this.False(isValid("}{"))
+	this.False(isValid(")(){}"))
 }

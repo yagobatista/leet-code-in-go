@@ -36,8 +36,10 @@ func isValid(expression string) bool {
 			continue
 		}
 
-		if stack.Get() == correspondingOpenBracket {
+		if !stack.IsEmpty() && stack.Get() == correspondingOpenBracket {
 			stack.Pop()
+		} else {
+			return false
 		}
 	}
 
