@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>add_two_numbers: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">leet-code/src/easy/add_two_numbers/add_two_numbers.go (86.7%)</option>
+				
+				<option value="file1">leet-code/src/easy/longest_common_prefix/longest_common_prefix.go (100.0%)</option>
+				
+				<option value="file2">leet-code/src/easy/longest_substring_without_repeating_characters/longest_substring_without_repeating_characters.go (92.9%)</option>
+				
+				<option value="file3">leet-code/src/easy/merge_sorted_lists/merge_sorted_lists.go (88.9%)</option>
+				
+				<option value="file4">leet-code/src/easy/palindrome_number/palindrome_number.go (100.0%)</option>
+				
+				<option value="file5">leet-code/src/easy/roman_to_integer/roman_to_integer.go (100.0%)</option>
+				
+				<option value="file6">leet-code/src/easy/same_tree/same_tree.go (100.0%)</option>
+				
+				<option value="file7">leet-code/src/easy/two_sum/two_sum.go (100.0%)</option>
+				
+				<option value="file8">leet-code/src/easy/valid_parentheses/valid_parentheses.go (100.0%)</option>
+				
+				<option value="file9">leet-code/src/pkg/set/set.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package add_two_numbers
+
+import (
+        "fmt"
+        "leet-code/src/pkg/stack"
+        "log"
+        "strconv"
+        "strings"
+)
+
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode <span class="cov8" title="1">{
+        return makeNumber(
+                sum(l1) + sum(l2),
+        )
+}</span>
+
+func sum(list *ListNode) int <span class="cov8" title="1">{
+        if list == nil </span><span class="cov0" title="0">{
+                return 0
+        }</span>
+
+        <span class="cov8" title="1">var stack stack.Stack[int]
+        for node := list; node != nil; node = node.Next </span><span class="cov8" title="1">{
+                stack.Push(node.Val)
+        }</span>
+
+        <span class="cov8" title="1">var sum string
+        for !stack.IsEmpty() </span><span class="cov8" title="1">{
+                sum = fmt.Sprintf("%s%d", sum, stack.Pop())
+        }</span>
+
+        <span class="cov8" title="1">number, err := strconv.Atoi(sum)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatal(err)
+        }</span>
+
+        <span class="cov8" title="1">return number</span>
+}
+
+func makeNumber(number int) *ListNode <span class="cov8" title="1">{
+        digits := strings.Split(fmt.Sprintf("%d", number), "")
+
+        var list *ListNode
+        for i := len(digits) - 1; i &gt;= 0; i-- </span><span class="cov8" title="1">{
+                number, err := strconv.Atoi(digits[i])
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Fatal(err)
+                }</span>
+
+                <span class="cov8" title="1">list = appendToList(list, number)</span>
+        }
+
+        <span class="cov8" title="1">return list</span>
+}
+
+func appendToList(head *ListNode, val int) *ListNode <span class="cov8" title="1">{
+        node := &amp;ListNode{
+                Val: val,
+        }
+
+        if head == nil </span><span class="cov8" title="1">{
+                return node
+        }</span>
+
+        <span class="cov8" title="1">for element := head; element != nil; element = element.Next </span><span class="cov8" title="1">{
+                if element.Next != nil </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">element.Next = node
+                return head</span>
+        }
+
+        <span class="cov0" title="0">return head</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package longest_common_prefix
+
+import "fmt"
+
+func longestCommonPrefix(inputs []string) (prefix string) <span class="cov8" title="1">{
+        prefixCountsMap := make(map[string]int)
+        commonPrefixMap := make(map[string]int)
+
+        for i := 0; i &lt; len(inputs); i++ </span><span class="cov8" title="1">{
+                input := inputs[i]
+                var prefix string
+
+                for j := 0; j &lt; len(input); j++ </span><span class="cov8" title="1">{
+                        prefix = fmt.Sprintf("%s%s", prefix, string(input[j]))
+
+                        count := prefixCountsMap[prefix]
+                        count++
+
+                        prefixCountsMap[prefix] = count
+
+                        isCommonBetweenAllInputs := count == len(inputs)
+                        if isCommonBetweenAllInputs </span><span class="cov8" title="1">{
+                                commonPrefixMap[prefix] = len(prefix)
+                        }</span>
+                }
+
+        }
+
+        <span class="cov8" title="1">return findLongest(commonPrefixMap)</span>
+}
+
+func findLongest(commonPrefixMap map[string]int) string <span class="cov8" title="1">{
+        var maxCount int
+        var longestPrefix string
+
+        for prefix, count := range commonPrefixMap </span><span class="cov8" title="1">{
+                if maxCount &lt; count </span><span class="cov8" title="1">{
+                        longestPrefix = prefix
+                        maxCount = count
+                }</span>
+        }
+
+        <span class="cov8" title="1">return longestPrefix</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package longest_substring_without_repeating_characters
+
+import (
+        "leet-code/src/pkg/set"
+        "strings"
+)
+
+func longestSubstringWithoutRepeatingCharacters(input string) (longestSubstringLength int) <span class="cov8" title="1">{
+        characters := strings.Split(input, "")
+        var commonCharacters set.Set[string]
+
+        for index, character := range characters </span><span class="cov8" title="1">{
+                commonCharacters.Clear()
+                commonCharacters.Add(character)
+
+                for _, nextCharacter := range characters[index+1:] </span><span class="cov8" title="1">{
+                        if commonCharacters.Exist(nextCharacter) </span><span class="cov8" title="1">{
+                                break</span>
+                        }
+
+                        <span class="cov8" title="1">commonCharacters.Add(nextCharacter)</span>
+                }
+
+                <span class="cov8" title="1">if longestSubstringLength &lt; commonCharacters.Len() </span><span class="cov8" title="1">{
+                        longestSubstringLength = commonCharacters.Len()
+                }</span>
+                <span class="cov8" title="1">if commonCharacters.Len() == len(characters) </span><span class="cov0" title="0">{
+                        return commonCharacters.Len()
+                }</span>
+        }
+
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package merge_sorted_lists
+
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode <span class="cov8" title="1">{
+        if list1 == nil </span><span class="cov8" title="1">{
+                return list2
+        }</span>
+
+        <span class="cov8" title="1">var mergedList *ListNode
+
+        fistListElement := list1
+        secondListElement := list2
+
+        for ; fistListElement != nil; fistListElement = fistListElement.Next </span><span class="cov8" title="1">{
+
+                for ; secondListElement != nil; secondListElement = secondListElement.Next </span><span class="cov8" title="1">{
+                        if fistListElement.Val &lt; secondListElement.Val </span><span class="cov8" title="1">{
+                                break</span>
+                        }
+
+                        <span class="cov8" title="1">mergedList = Insert(mergedList, secondListElement.Val)</span>
+                }
+
+                <span class="cov8" title="1">mergedList = Insert(mergedList, fistListElement.Val)</span>
+        }
+
+        <span class="cov8" title="1">if secondListElement != nil </span><span class="cov8" title="1">{
+                for ; secondListElement != nil; secondListElement = secondListElement.Next </span><span class="cov8" title="1">{
+                        mergedList = Insert(mergedList, secondListElement.Val)
+                }</span>
+        }
+        <span class="cov8" title="1">if fistListElement != nil </span><span class="cov0" title="0">{
+                for ; fistListElement != nil; fistListElement = fistListElement.Next </span><span class="cov0" title="0">{
+                        mergedList = Insert(mergedList, fistListElement.Val)
+                }</span>
+        }
+
+        <span class="cov8" title="1">return mergedList</span>
+}
+
+func Insert(head *ListNode, val int) *ListNode <span class="cov8" title="1">{
+        node := &amp;ListNode{
+                Val: val,
+        }
+
+        if head == nil </span><span class="cov8" title="1">{
+                return node
+        }</span>
+
+        <span class="cov8" title="1">for element := head; element != nil; element = element.Next </span><span class="cov8" title="1">{
+                if element.Next != nil </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">element.Next = node
+                return head</span>
+        }
+
+        <span class="cov0" title="0">return head</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package palindrome_number
+
+import (
+        "math"
+        "strconv"
+)
+
+func IsPalindrome(number int) bool <span class="cov8" title="1">{
+        parsedNumber := strconv.Itoa(number)
+
+        digitsCount := len(parsedNumber)
+
+        middle := int(math.Floor(float64((digitsCount) / 2)))
+
+        firstHalfIndex := middle
+        secondHalfIndex := middle
+
+        oddCount := digitsCount%2 == 1
+        if oddCount </span><span class="cov8" title="1">{
+                firstHalfIndex = middle
+                secondHalfIndex = middle + 1
+        }</span>
+
+        <span class="cov8" title="1">firstHalf := parsedNumber[:firstHalfIndex]
+        secondHalf := parsedNumber[secondHalfIndex:]
+
+        return firstHalf == secondHalf</span>
+}
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package roman_to_integer
+
+import (
+        "fmt"
+        "strings"
+)
+
+type Roman string
+
+var (
+        I Roman = "I"
+        V Roman = "V"
+        X Roman = "X"
+        L Roman = "L"
+        C Roman = "C"
+        D Roman = "D"
+        M Roman = "M"
+
+        IV Roman = "IV"
+        IX Roman = "IX"
+        XL Roman = "XL"
+        XC Roman = "XC"
+        CD Roman = "CD"
+        CM Roman = "CM"
+)
+
+var romanToIntegerMap = map[Roman]int{
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
+
+        IV: 4,
+        IX: 9,
+        XL: 40,
+        XC: 90,
+        CD: 400,
+        CM: 900,
+}
+
+type specialCasesSet map[Roman]bool
+
+var specialCasesMap = map[Roman]specialCasesSet{
+        I: {IV: true, IX: true},
+        X: {XL: true, XC: true},
+        C: {CD: true, CM: true},
+}
+
+func RomanToInteger(romanNumber string) int <span class="cov8" title="1">{
+        digits := strings.Split(romanNumber, "")
+        var result int
+
+        for i := 0; i &lt; len(digits); i++ </span><span class="cov8" title="1">{
+                value, nextI := findValue(digits, i, Roman(digits[i]))
+                i = nextI
+                result += value
+        }</span>
+
+        <span class="cov8" title="1">return result</span>
+}
+
+func findValue(digits []string, index int, number Roman) (value int, nextDigit int) <span class="cov8" title="1">{
+        value = romanToIntegerMap[number]
+        nextDigit = index
+
+        especialCases, isSpecialCase := specialCasesMap[number]
+        if !isSpecialCase </span><span class="cov8" title="1">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">if nextDigit+1 &gt;= len(digits) </span><span class="cov8" title="1">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">composeRomanDigit := Roman(fmt.Sprintf("%s%s", digits[index], digits[nextDigit+1]))
+
+        _, foundCase := especialCases[composeRomanDigit]
+        if !foundCase </span><span class="cov8" title="1">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">return findValue(digits, nextDigit+1, composeRomanDigit)</span>
+}
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package same_tree
+
+func isSameTree(p *TreeNode, q *TreeNode) bool <span class="cov8" title="1">{
+        if p == nil &amp;&amp; q == nil </span><span class="cov8" title="1">{
+                return true
+        }</span>
+
+        <span class="cov8" title="1">if p == nil || q == nil </span><span class="cov8" title="1">{
+                return false
+        }</span>
+
+        <span class="cov8" title="1">if p.Val != q.Val </span><span class="cov8" title="1">{
+                return false
+        }</span>
+
+        <span class="cov8" title="1">isSame := isSameTree(p.Left, q.Left)
+        if !isSame </span><span class="cov8" title="1">{
+                return false
+        }</span>
+
+        <span class="cov8" title="1">return isSameTree(p.Right, q.Right)</span>
+}
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package two_sum
+
+import (
+        "errors"
+)
+
+type Match int
+type Index int
+
+func twoSum(inputs []int, target int) (int, int, error) <span class="cov8" title="1">{
+        matchMap := make(map[Match]Index)
+
+        for index, input := range inputs </span><span class="cov8" title="1">{
+                matchMap[Match(input)] = Index(index)
+        }</span>
+
+        <span class="cov8" title="1">for index, input := range inputs </span><span class="cov8" title="1">{
+                match := Match(target - input)
+
+                secondIndex, foundMatch := matchMap[match]
+                if int(secondIndex) == index </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">if foundMatch </span><span class="cov8" title="1">{
+                        return index, int(secondIndex), nil
+                }</span>
+        }
+
+        <span class="cov8" title="1">return 0, 0, errors.New("invalid input or target")</span>
+}
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package valid_parentheses
+
+import (
+        "leet-code/src/pkg/stack"
+        "strings"
+)
+
+type Bracket string
+
+const (
+        PARENTHESES           Bracket = "("
+        CLOSING_PARENTHESES   Bracket = ")"
+        CURLY_BRACKET         Bracket = "{"
+        CLOSING_CURLY_BRACKET Bracket = "}"
+        BRACKET               Bracket = "["
+        CLOSING_BRACKET       Bracket = "]"
+)
+
+var bracketClosingMap = map[Bracket]Bracket{
+        CLOSING_PARENTHESES:   PARENTHESES,
+        CLOSING_CURLY_BRACKET: CURLY_BRACKET,
+        CLOSING_BRACKET:       BRACKET,
+}
+
+func isValid(expression string) bool <span class="cov8" title="1">{
+        var stack stack.Stack[Bracket]
+
+        for _, character := range strings.Split(expression, "") </span><span class="cov8" title="1">{
+                bracket := Bracket(character)
+
+                correspondingOpenBracket, isClosing := bracketClosingMap[bracket]
+
+                isOpen := !isClosing
+                if isOpen </span><span class="cov8" title="1">{
+                        stack.Push(bracket)
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">if !stack.IsEmpty() &amp;&amp; stack.Get() == correspondingOpenBracket </span><span class="cov8" title="1">{
+                        stack.Pop()
+                }</span> else<span class="cov8" title="1"> {
+                        return false
+                }</span>
+        }
+
+        <span class="cov8" title="1">return stack.Len() == 0</span>
+}
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package set
+
+type Set[T comparable] struct {
+        data map[T]bool
+}
+
+func (this *Set[T]) Add(items ...T) <span class="cov8" title="1">{
+        if this.data == nil </span><span class="cov8" title="1">{
+                this.data = map[T]bool{}
+        }</span>
+
+        <span class="cov8" title="1">for _, item := range items </span><span class="cov8" title="1">{
+                this.data[item] = true
+        }</span>
+}
+
+func (this *Set[T]) Exist(key T) bool <span class="cov8" title="1">{
+        _, found := this.data[key]
+        return found
+}</span>
+
+func (this *Set[T]) Clear() <span class="cov8" title="1">{
+        this.data = map[T]bool{}
+}</span>
+
+func (this *Set[T]) Len() int <span class="cov8" title="1">{
+        return len(this.data)
+}</span>
+
+func (this *Set[T]) Iter() []T <span class="cov8" title="1">{
+        keys := make([]T, this.Len())
+        index := 0
+
+        for key := range this.data </span><span class="cov8" title="1">{
+                keys[index] = key
+                index++
+        }</span>
+
+        <span class="cov8" title="1">return keys</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
