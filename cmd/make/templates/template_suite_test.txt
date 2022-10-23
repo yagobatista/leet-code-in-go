@@ -8,6 +8,14 @@ type {{.SuiteStructName}} struct {
 	suite.Suite
 }
 
-func (this *{{.SuiteStructName}}) Test() {
+func (this *{{.SuiteStructName}}) TestExample1() {
+	{{.FunctionName}}()
+}
+
+func (this *{{.SuiteStructName}}) TestExample2() {
+	{{.FunctionName}}()
+}
+
+func (this *{{.SuiteStructName}}) TestExample3() {
 	{{.FunctionName}}()
 }
