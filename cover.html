@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>add_two_numbers: Go Coverage Report</title>
+		<title>longest_common_prefix: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,23 +55,23 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">leet-code/src/easy/add_two_numbers/add_two_numbers.go (86.7%)</option>
+				<option value="file0">leet-code/src/easy/longest_common_prefix/longest_common_prefix.go (100.0%)</option>
 				
-				<option value="file1">leet-code/src/easy/longest_common_prefix/longest_common_prefix.go (100.0%)</option>
+				<option value="file1">leet-code/src/easy/merge_sorted_lists/merge_sorted_lists.go (88.9%)</option>
 				
-				<option value="file2">leet-code/src/easy/longest_substring_without_repeating_characters/longest_substring_without_repeating_characters.go (92.9%)</option>
+				<option value="file2">leet-code/src/easy/palindrome_number/palindrome_number.go (100.0%)</option>
 				
-				<option value="file3">leet-code/src/easy/merge_sorted_lists/merge_sorted_lists.go (88.9%)</option>
+				<option value="file3">leet-code/src/easy/roman_to_integer/roman_to_integer.go (100.0%)</option>
 				
-				<option value="file4">leet-code/src/easy/palindrome_number/palindrome_number.go (100.0%)</option>
+				<option value="file4">leet-code/src/easy/same_tree/same_tree.go (100.0%)</option>
 				
-				<option value="file5">leet-code/src/easy/roman_to_integer/roman_to_integer.go (100.0%)</option>
+				<option value="file5">leet-code/src/easy/two_sum/two_sum.go (100.0%)</option>
 				
-				<option value="file6">leet-code/src/easy/same_tree/same_tree.go (100.0%)</option>
+				<option value="file6">leet-code/src/easy/valid_parentheses/valid_parentheses.go (100.0%)</option>
 				
-				<option value="file7">leet-code/src/easy/two_sum/two_sum.go (100.0%)</option>
+				<option value="file7">leet-code/src/medium/add_two_numbers/add_two_numbers.go (86.7%)</option>
 				
-				<option value="file8">leet-code/src/easy/valid_parentheses/valid_parentheses.go (100.0%)</option>
+				<option value="file8">leet-code/src/medium/longest_substring_without_repeating_characters/longest_substring_without_repeating_characters.go (92.9%)</option>
 				
 				<option value="file9">leet-code/src/pkg/set/set.go (100.0%)</option>
 				
@@ -87,84 +87,7 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package add_two_numbers
-
-import (
-        "fmt"
-        "leet-code/src/pkg/stack"
-        "log"
-        "strconv"
-        "strings"
-)
-
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode <span class="cov8" title="1">{
-        return makeNumber(
-                sum(l1) + sum(l2),
-        )
-}</span>
-
-func sum(list *ListNode) int <span class="cov8" title="1">{
-        if list == nil </span><span class="cov0" title="0">{
-                return 0
-        }</span>
-
-        <span class="cov8" title="1">var stack stack.Stack[int]
-        for node := list; node != nil; node = node.Next </span><span class="cov8" title="1">{
-                stack.Push(node.Val)
-        }</span>
-
-        <span class="cov8" title="1">var sum string
-        for !stack.IsEmpty() </span><span class="cov8" title="1">{
-                sum = fmt.Sprintf("%s%d", sum, stack.Pop())
-        }</span>
-
-        <span class="cov8" title="1">number, err := strconv.Atoi(sum)
-        if err != nil </span><span class="cov0" title="0">{
-                log.Fatal(err)
-        }</span>
-
-        <span class="cov8" title="1">return number</span>
-}
-
-func makeNumber(number int) *ListNode <span class="cov8" title="1">{
-        digits := strings.Split(fmt.Sprintf("%d", number), "")
-
-        var list *ListNode
-        for i := len(digits) - 1; i &gt;= 0; i-- </span><span class="cov8" title="1">{
-                number, err := strconv.Atoi(digits[i])
-                if err != nil </span><span class="cov0" title="0">{
-                        log.Fatal(err)
-                }</span>
-
-                <span class="cov8" title="1">list = appendToList(list, number)</span>
-        }
-
-        <span class="cov8" title="1">return list</span>
-}
-
-func appendToList(head *ListNode, val int) *ListNode <span class="cov8" title="1">{
-        node := &amp;ListNode{
-                Val: val,
-        }
-
-        if head == nil </span><span class="cov8" title="1">{
-                return node
-        }</span>
-
-        <span class="cov8" title="1">for element := head; element != nil; element = element.Next </span><span class="cov8" title="1">{
-                if element.Next != nil </span><span class="cov8" title="1">{
-                        continue</span>
-                }
-
-                <span class="cov8" title="1">element.Next = node
-                return head</span>
-        }
-
-        <span class="cov0" title="0">return head</span>
-}
-</pre>
-		
-		<pre class="file" id="file1" style="display: none">package longest_common_prefix
+		<pre class="file" id="file0" style="display: none">package longest_common_prefix
 
 import "fmt"
 
@@ -210,42 +133,7 @@ func findLongest(commonPrefixMap map[string]int) string <span class="cov8" title
 }
 </pre>
 		
-		<pre class="file" id="file2" style="display: none">package longest_substring_without_repeating_characters
-
-import (
-        "leet-code/src/pkg/set"
-        "strings"
-)
-
-func longestSubstringWithoutRepeatingCharacters(input string) (longestSubstringLength int) <span class="cov8" title="1">{
-        characters := strings.Split(input, "")
-        var commonCharacters set.Set[string]
-
-        for index, character := range characters </span><span class="cov8" title="1">{
-                commonCharacters.Clear()
-                commonCharacters.Add(character)
-
-                for _, nextCharacter := range characters[index+1:] </span><span class="cov8" title="1">{
-                        if commonCharacters.Exist(nextCharacter) </span><span class="cov8" title="1">{
-                                break</span>
-                        }
-
-                        <span class="cov8" title="1">commonCharacters.Add(nextCharacter)</span>
-                }
-
-                <span class="cov8" title="1">if longestSubstringLength &lt; commonCharacters.Len() </span><span class="cov8" title="1">{
-                        longestSubstringLength = commonCharacters.Len()
-                }</span>
-                <span class="cov8" title="1">if commonCharacters.Len() == len(characters) </span><span class="cov0" title="0">{
-                        return commonCharacters.Len()
-                }</span>
-        }
-
-        <span class="cov8" title="1">return</span>
-}
-</pre>
-		
-		<pre class="file" id="file3" style="display: none">package merge_sorted_lists
+		<pre class="file" id="file1" style="display: none">package merge_sorted_lists
 
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode <span class="cov8" title="1">{
         if list1 == nil </span><span class="cov8" title="1">{
@@ -306,7 +194,7 @@ func Insert(head *ListNode, val int) *ListNode <span class="cov8" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file4" style="display: none">package palindrome_number
+		<pre class="file" id="file2" style="display: none">package palindrome_number
 
 import (
         "math"
@@ -336,7 +224,7 @@ func IsPalindrome(number int) bool <span class="cov8" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file5" style="display: none">package roman_to_integer
+		<pre class="file" id="file3" style="display: none">package roman_to_integer
 
 import (
         "fmt"
@@ -424,7 +312,7 @@ func findValue(digits []string, index int, number Roman) (value int, nextDigit i
 }
 </pre>
 		
-		<pre class="file" id="file6" style="display: none">package same_tree
+		<pre class="file" id="file4" style="display: none">package same_tree
 
 func isSameTree(p *TreeNode, q *TreeNode) bool <span class="cov8" title="1">{
         if p == nil &amp;&amp; q == nil </span><span class="cov8" title="1">{
@@ -448,7 +336,7 @@ func isSameTree(p *TreeNode, q *TreeNode) bool <span class="cov8" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file7" style="display: none">package two_sum
+		<pre class="file" id="file5" style="display: none">package two_sum
 
 import (
         "errors"
@@ -481,7 +369,7 @@ func twoSum(inputs []int, target int) (int, int, error) <span class="cov8" title
 }
 </pre>
 		
-		<pre class="file" id="file8" style="display: none">package valid_parentheses
+		<pre class="file" id="file6" style="display: none">package valid_parentheses
 
 import (
         "leet-code/src/pkg/stack"
@@ -527,6 +415,118 @@ func isValid(expression string) bool <span class="cov8" title="1">{
         }
 
         <span class="cov8" title="1">return stack.Len() == 0</span>
+}
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package add_two_numbers
+
+import (
+        "fmt"
+        "leet-code/src/pkg/stack"
+        "log"
+        "strconv"
+        "strings"
+)
+
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode <span class="cov8" title="1">{
+        return makeNumber(
+                sum(l1) + sum(l2),
+        )
+}</span>
+
+func sum(list *ListNode) int <span class="cov8" title="1">{
+        if list == nil </span><span class="cov0" title="0">{
+                return 0
+        }</span>
+
+        <span class="cov8" title="1">var stack stack.Stack[int]
+        for node := list; node != nil; node = node.Next </span><span class="cov8" title="1">{
+                stack.Push(node.Val)
+        }</span>
+
+        <span class="cov8" title="1">var sum string
+        for !stack.IsEmpty() </span><span class="cov8" title="1">{
+                sum = fmt.Sprintf("%s%d", sum, stack.Pop())
+        }</span>
+
+        <span class="cov8" title="1">number, err := strconv.Atoi(sum)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatal(err)
+        }</span>
+
+        <span class="cov8" title="1">return number</span>
+}
+
+func makeNumber(number int) *ListNode <span class="cov8" title="1">{
+        digits := strings.Split(fmt.Sprintf("%d", number), "")
+
+        var list *ListNode
+        for i := len(digits) - 1; i &gt;= 0; i-- </span><span class="cov8" title="1">{
+                number, err := strconv.Atoi(digits[i])
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Fatal(err)
+                }</span>
+
+                <span class="cov8" title="1">list = appendToList(list, number)</span>
+        }
+
+        <span class="cov8" title="1">return list</span>
+}
+
+func appendToList(head *ListNode, val int) *ListNode <span class="cov8" title="1">{
+        node := &amp;ListNode{
+                Val: val,
+        }
+
+        if head == nil </span><span class="cov8" title="1">{
+                return node
+        }</span>
+
+        <span class="cov8" title="1">for element := head; element != nil; element = element.Next </span><span class="cov8" title="1">{
+                if element.Next != nil </span><span class="cov8" title="1">{
+                        continue</span>
+                }
+
+                <span class="cov8" title="1">element.Next = node
+                return head</span>
+        }
+
+        <span class="cov0" title="0">return head</span>
+}
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package longest_substring_without_repeating_characters
+
+import (
+        "leet-code/src/pkg/set"
+        "strings"
+)
+
+func longestSubstringWithoutRepeatingCharacters(input string) (longestSubstringLength int) <span class="cov8" title="1">{
+        characters := strings.Split(input, "")
+        var commonCharacters set.Set[string]
+
+        for index, character := range characters </span><span class="cov8" title="1">{
+                commonCharacters.Clear()
+                commonCharacters.Add(character)
+
+                for _, nextCharacter := range characters[index+1:] </span><span class="cov8" title="1">{
+                        if commonCharacters.Exist(nextCharacter) </span><span class="cov8" title="1">{
+                                break</span>
+                        }
+
+                        <span class="cov8" title="1">commonCharacters.Add(nextCharacter)</span>
+                }
+
+                <span class="cov8" title="1">if longestSubstringLength &lt; commonCharacters.Len() </span><span class="cov8" title="1">{
+                        longestSubstringLength = commonCharacters.Len()
+                }</span>
+                <span class="cov8" title="1">if commonCharacters.Len() == len(characters) </span><span class="cov0" title="0">{
+                        return commonCharacters.Len()
+                }</span>
+        }
+
+        <span class="cov8" title="1">return</span>
 }
 </pre>
 		
