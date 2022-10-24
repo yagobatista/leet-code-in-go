@@ -11,6 +11,8 @@ import (
 )
 
 type TemplateContent struct {
+	Difficulty string
+
 	SuiteStructName  string
 	FunctionName     string
 	TestFunctionName string
@@ -19,14 +21,15 @@ type TemplateContent struct {
 
 func main() {
 	files := [][]string{
-		{"../../src/easy/%s/%s.go", "templates/template.txt"},
-		{"../../src/easy/%s/%s_test.go", "templates/template_test.txt"},
-		{"../../src/easy/%s/suite_%s_test.go", "templates/template_suite_test.txt"},
+		{"../../src/%s/%s/%s.go", "templates/template.txt"},
+		{"../../src/%s/%s/%s_test.go", "templates/template_test.txt"},
+		{"../../src/%s/%s/suite_%s_test.go", "templates/template_suite_test.txt"},
 	}
 
-	packageName := os.Args[1]
+	packageName := os.Args[2]
 
 	content := TemplateContent{
+		Difficulty:       os.Args[1],
 		SuiteStructName:  fmt.Sprintf("%sSuite", strcase.ToCamel(packageName)),
 		FunctionName:     strcase.ToLowerCamel(packageName),
 		TestFunctionName: strcase.ToCamel(packageName),
@@ -47,7 +50,7 @@ func writeFile(filePath string, templateFile string, content TemplateContent) er
 		return err
 	}
 
-	fileComplete := fmt.Sprintf(filePath, content.PackageName, content.PackageName)
+	fileComplete := fmt.Sprintf(filePath, content.Difficulty, content.PackageName, content.PackageName)
 
 	split := strings.Split(fileComplete, "/")
 	path := strings.Join(split[:len(split)-1], "/")
