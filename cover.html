@@ -73,7 +73,9 @@
 				
 				<option value="file8">leet-code/src/medium/longest_substring_without_repeating_characters/longest_substring_without_repeating_characters.go (92.9%)</option>
 				
-				<option value="file9">leet-code/src/pkg/set/set.go (100.0%)</option>
+				<option value="file9">leet-code/src/medium/rotate_image/rotate_image.go (100.0%)</option>
+				
+				<option value="file10">leet-code/src/pkg/set/set.go (100.0%)</option>
 				
 				</select>
 			</div>
@@ -530,7 +532,81 @@ func longestSubstringWithoutRepeatingCharacters(input string) (longestSubstringL
 }
 </pre>
 		
-		<pre class="file" id="file9" style="display: none">package set
+		<pre class="file" id="file9" style="display: none">package rotate_image
+
+func rotateImage(image [][]int) <span class="cov8" title="1">{
+        inferiorLimit := 0
+        superiorLimit := len(image)
+
+        for inferiorLimit &lt; superiorLimit </span><span class="cov8" title="1">{
+                elements := getAllElementFromSquare(image, inferiorLimit, superiorLimit)
+                rotatedElements := rotateElements(elements, inferiorLimit, superiorLimit)
+                updateSquare(image, rotatedElements, inferiorLimit, superiorLimit)
+
+                inferiorLimit++
+                superiorLimit--
+        }</span>
+
+}
+
+func getAllElementFromSquare(image [][]int, inferiorLimit int, superiorLimit int) (elements []int) <span class="cov8" title="1">{
+        lastColumn := superiorLimit - 1
+
+        for i := inferiorLimit; i &lt; superiorLimit; i++ </span><span class="cov8" title="1">{
+                elements = append(elements, image[inferiorLimit][i])
+        }</span>
+
+        <span class="cov8" title="1">for i := inferiorLimit + 1; i &lt; superiorLimit; i++ </span><span class="cov8" title="1">{
+                elements = append(elements, image[i][lastColumn])
+        }</span>
+
+        <span class="cov8" title="1">for i := superiorLimit - 2; i &gt;= inferiorLimit; i-- </span><span class="cov8" title="1">{
+                elements = append(elements, image[superiorLimit-1][i])
+        }</span>
+
+        <span class="cov8" title="1">for i := superiorLimit - 2; i &gt;= inferiorLimit+1; i-- </span><span class="cov8" title="1">{
+                elements = append(elements, image[i][inferiorLimit])
+        }</span>
+
+        <span class="cov8" title="1">return</span>
+}
+
+func updateSquare(image [][]int, rotatedElements []int, inferiorLimit int, superiorLimit int) (elements []int) <span class="cov8" title="1">{
+        lastColumn := superiorLimit - 1
+        var j int
+
+        for i := inferiorLimit; i &lt; superiorLimit; i++ </span><span class="cov8" title="1">{
+                image[inferiorLimit][i] = rotatedElements[j]
+                j++
+        }</span>
+
+        <span class="cov8" title="1">for i := inferiorLimit + 1; i &lt; superiorLimit; i++ </span><span class="cov8" title="1">{
+                image[i][lastColumn] = rotatedElements[j]
+                j++
+        }</span>
+
+        <span class="cov8" title="1">for i := superiorLimit - 2; i &gt;= inferiorLimit; i-- </span><span class="cov8" title="1">{
+                image[superiorLimit-1][i] = rotatedElements[j]
+                j++
+        }</span>
+
+        <span class="cov8" title="1">for i := superiorLimit - 2; i &gt;= inferiorLimit+1; i-- </span><span class="cov8" title="1">{
+                image[i][inferiorLimit] = rotatedElements[j]
+                j++
+        }</span>
+
+        <span class="cov8" title="1">return</span>
+}
+
+func rotateElements(elements []int, inferiorLimit int, superiorLimit int) (rotatedElements []int) <span class="cov8" title="1">{
+        cut := len(elements) - (superiorLimit - inferiorLimit) + 1
+        rotatedElements = append(rotatedElements, elements[cut:]...)
+        rotatedElements = append(rotatedElements, elements[:cut]...)
+        return rotatedElements
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package set
 
 type Set[T comparable] struct {
         data map[T]bool
