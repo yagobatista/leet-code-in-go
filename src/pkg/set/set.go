@@ -4,6 +4,13 @@ type Set[T comparable] struct {
 	data map[T]bool
 }
 
+func NewSet[T comparable](items ...T) Set[T] {
+	set := Set[T]{}
+	set.Add(items...)
+
+	return set
+}
+
 func (this *Set[T]) Add(items ...T) {
 	if this.data == nil {
 		this.data = map[T]bool{}
