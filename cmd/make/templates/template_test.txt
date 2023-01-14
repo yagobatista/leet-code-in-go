@@ -9,3 +9,19 @@ import (
 func Test{{.TestFunctionName}}(t *testing.T) {
 	suite.Run(t, new({{.SuiteStructName}}))
 }
+
+type {{.SuiteStructName}} struct {
+	suite.Suite
+}
+
+func (this *{{.SuiteStructName}}) TestExample1() {
+	{{.FunctionName}}()
+}
+
+func (this *{{.SuiteStructName}}) TestExample2() {
+	{{.FunctionName}}()
+}
+
+func (this *{{.SuiteStructName}}) TestExample3() {
+	{{.FunctionName}}()
+}

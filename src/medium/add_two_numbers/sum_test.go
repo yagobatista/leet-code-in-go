@@ -1,8 +1,14 @@
 package add_two_numbers
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/suite"
 )
+
+func TestSumSuite(t *testing.T) {
+	suite.Run(t, new(sumSuite))
+}
 
 type sumSuite struct {
 	suite.Suite

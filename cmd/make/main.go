@@ -23,7 +23,6 @@ func main() {
 	files := [][]string{
 		{"../../src/%s/%s/%s.go", "templates/template.txt"},
 		{"../../src/%s/%s/%s_test.go", "templates/template_test.txt"},
-		{"../../src/%s/%s/suite_%s_test.go", "templates/template_suite_test.txt"},
 	}
 
 	packageName := os.Args[2]
