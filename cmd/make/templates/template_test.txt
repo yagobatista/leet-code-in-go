@@ -15,13 +15,19 @@ type {{.SuiteStructName}} struct {
 }
 
 func (this *{{.SuiteStructName}}) TestExample1() {
-	{{.FunctionName}}()
+	output := {{.FunctionName}}()
+	
+	this.Equal(0, output)
 }
 
 func (this *{{.SuiteStructName}}) TestExample2() {
-	{{.FunctionName}}()
+	output := {{.FunctionName}}()
+	
+	this.Equal(0, output)
 }
 
 func (this *{{.SuiteStructName}}) TestExample3() {
-	{{.FunctionName}}()
+	output := {{.FunctionName}}()
+	
+	this.Equal(0, output)
 }

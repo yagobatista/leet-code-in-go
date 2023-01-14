@@ -1,5 +1,5 @@
 package {{.PackageName}}
 
-func {{.FunctionName}}() {
+func {{.FunctionName}}() int {
 
 }
