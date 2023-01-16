@@ -6,9 +6,8 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-func TestGetAllElementsFromSquareSuite(t *testing.T) {
+func TestRotateImageSuite(t *testing.T) {
 	suite.Run(t, new(RotateImageSuite))
-	suite.Run(t, new(GetAllElementsFromSquareSuite))
 }
 
 type RotateImageSuite struct {
